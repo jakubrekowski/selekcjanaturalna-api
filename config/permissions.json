@@ -1,0 +1,62 @@
+[
+  {
+    "name": "READ_SELF",
+    "bit": 1
+  },
+  {
+    "name": "READ_USERS",
+    "bit": 2
+  },
+  {
+    "name": "MODIFY_USERS",
+    "bit": 4
+  },
+  {
+    "name": "MANAGE_USERS",
+    "bit": 8
+  },
+  {
+    "name": "READ_RECEIPTS",
+    "bit": 16
+  },
+  {
+    "name": "MODIFY_RECEIPTS",
+    "bit": 32
+  },
+  {
+    "name": "MANAGE_RECEIPTS",
+    "bit": 64
+  },
+  {
+    "name": "READ_DOCS",
+    "bit": 128
+  },
+  {
+    "name": "MODIFY_DOCS",
+    "bit": 256
+  },
+  {
+    "name": "MANAGE_DOCS",
+    "bit": 512
+  },
+  {
+    "name": "MESSAGE_DISCORD",
+    "bit": 1024
+  },
+  {
+    "name": "MESSAGE_EMAIL",
+    "bit": 2048
+  },
+  {
+    "name": "MESSAGE_FACEBOOK",
+    "bit": 4096
+  },
+  {
+    "name": "MESSAGE_PHONE",
+    "bit": 8192
+  },
+  {
+    "name": "ADMIN",
+    "bit": 16384
+  }
+]

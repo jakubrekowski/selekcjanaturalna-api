@@ -1,0 +1,8 @@
+// EUPL-1.2. Some rights reserved for unoff cloud (https://cloud.unoff.pl)
+// Terms of service: https://selekcjanaturalna.pl/terms
+
+// Returns the OpenAPI 3.1.0 file
+
+GET /users HTTP/1.1
+Host: 127.0.0.1:5050
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjIsIm5hbWUiOiJKb2huIERvZSIsInN1YiI6IjEyMzQ1Njc4OTAifQ.ZXQ_ePboxrXKqRdMpUEFgmB6ZMKn1wavnLjHhZ-ieY7sOV5xxSZ2otIKWqrfX2pfG7IilqniMaz5b9Zu2Lf32w

@@ -1,0 +1,694 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Selekcja Naturalna API",
+    "description": "API for student and payments management",
+    "termsOfService": "https://selekcjanaturalna.pl/terms",
+    "contact": {
+      "name": "API Support",
+      "url": "https://discord.gg/UANYncumXy",
+      "email": "support@unoff.pl"
+    },
+    "license": {
+      "name": "EUROPEAN UNION PUBLIC LICENCE v. 1.2",
+      "url": "https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/2020-03/EUPL-1.2%20EN.txt"
+    },
+    "version": "v0.0.1-alpha"
+  },
+  "paths": [
+    {
+      "/auth/login/discord": {
+        "post": {
+          "description": "Authentication to the system using Discord",
+          "responses": {
+            "200": {
+              "description": "Authentication successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/token"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Authentication failed.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/users": {
+        "get": {
+          "description": "Returning array of users object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/user"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/user": {
+        "get": {
+          "description": "Returning user object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/user"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "description": "Creates user object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/user"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "description": "Updates user object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/user"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "description": "Removes user object, when is user type is in {0,1} or `User.Paid` is empty.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/status"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": {
+          "name": "id",
+          "in": "path",
+          "description": "ID of object",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "style": "simple"
+        }
+      },
+      "/receipts": {
+        "get": {
+          "description": "Returning array of receipts object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/receipt"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/receipt": {
+        "get": {
+          "description": "Returning receipt object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/receipt"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "description": "Creates receipt object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/receipt"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "description": "Updates receipt object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/receipt"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "description": "Removes receipt object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/status"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": {
+          "name": "id",
+          "in": "path",
+          "description": "ID of object",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "style": "simple"
+        }
+      },
+      "/documents": {
+        "get": {
+          "description": "Returning array of documents object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/document"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/document": {
+        "get": {
+          "description": "Returning document object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/document"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "description": "Creates document object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/document"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "description": "Updates document object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/document"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "description": "Removes document object.",
+          "responses": {
+            "200": {
+              "description": "The request to the server was successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/status"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid payload.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Unauthorized.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": {
+          "name": "id",
+          "in": "path",
+          "description": "ID of object",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "style": "simple"
+        }
+      }
+    }
+  ]
+}
+
